@@ -1,12 +1,29 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <button @click="todo">Click me</button>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    todo() {
+      FSOpen.service.crm.create({
+        objectType: 'AccountObj',
+        onSuccess(resp) {
+          global.alert(JSON.stringify(resp));
+        },
+        onFail(error) {
+          global.alert(JSON.stringify(error));
+        },
+      });
+    },
+  },
+};
+</script>
 
 <style lang="less">
 #app {
